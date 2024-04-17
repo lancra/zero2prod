@@ -24,11 +24,12 @@ DB_HOST="${POSTGRES_HOST:=localhost}"
 if [[ -z "${SKIP_DOCKER}" ]]
 then
 podman run \
-    -e POSTGRES_USER=${DB_USER} \
-    -e POSTGRES_PASSWORD=${DB_PASSWORD} \
-    -e POSTGRES_DB=${DB_NAME} \
-    -p "${DB_PORT}":5432 \
-    -d postgres \
+    --env POSTGRES_USER=${DB_USER} \
+    --env POSTGRES_PASSWORD=${DB_PASSWORD} \
+    --env POSTGRES_DB=${DB_NAME} \
+    --publish "${DB_PORT}":5432 \
+    --detach \
+    --name postgresql \
     postgres -N 1000
 fi
 
