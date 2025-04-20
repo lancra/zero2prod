@@ -42,6 +42,8 @@ jobs:
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: Run Tests
         run: cargo test
+      - name: Check Database Queries
+        run: cargo sqlx prepare --workspace --check -- --all-targets
 
   fmt:
     name: Rustfmt
