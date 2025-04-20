@@ -29,6 +29,7 @@ then
     --env POSTGRES_PASSWORD=${DB_PASSWORD} \
     --env POSTGRES_DB=${DB_NAME} \
     --publish "${DB_PORT}":5432 \
+    --name zero2prod \
     --detach postgres \
     postgres -N 1000
 fi
